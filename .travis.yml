@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t silefort/reacte-test -f client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true silefort/react-test npm run test -- --coverage
+
+after_sucess:
+  - docker build -t silefort/multi-client ./client
+  - docker build -t silefort/multi-nginx ./nginx
+  - docker build -t silefort/multi-server ./server
+  - docker build -t silefort/multi-worker ./worker
+  # Login to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take these images and push them to docker hub
+  - docker push silefort/multi-client
+  - docker push silefort/multi-nginx
+  - docker push silefort/multi-server
+  - docker push silefort/multi-worker
+
