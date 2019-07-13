@@ -3,10 +3,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t silefort/reacte-test -f client/Dockerfile.dev ./client
+  - docker build -t silefort/react-test -f client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true silefort/react-test npm run test -- --coverage
+  - docker run -e CI=true silefort/react-test npm test
 
 after_sucess:
   - docker build -t silefort/multi-client ./client
