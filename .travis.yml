@@ -8,7 +8,7 @@ before_install:
 script:
   - docker run -e CI=true silefort/react-test npm test
 
-after_sucess:
+after_success:
   - docker build -t silefort/multi-client ./client
   - docker build -t silefort/multi-nginx ./nginx
   - docker build -t silefort/multi-server ./server
