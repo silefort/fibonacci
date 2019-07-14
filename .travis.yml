@@ -21,3 +21,17 @@ after_success:
   - docker push silefort/multi-server
   - docker push silefort/multi-worker
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-098526689657"
+  bucket_path: "multi-docker"
+  on:
+    branch: master
+  access_key_id:
+    secure: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+
