@@ -132,3 +132,23 @@
 * Scroll to Environment Variables
 * Add AWS_ACCESS_KEY and set to your AWS access key
 * Add AWS_SECRET_KEY and set to your AWS secret key
+
+## Document on Nginx ingress for Kube:
+
+https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html
+
+
+## Minikube
+
+```
+minikube start
+minikube ip
+minikube dashboard
+```
+
+## Deploy
+```
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=password123
+kubectl apply -f k8s
+```
+
